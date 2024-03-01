@@ -1,0 +1,22 @@
+:host {
+
+    display: flex;
+    flex: 1;
+}
+
+.coverparentspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.coverparentspace {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: scroll;
+    background-image: url('/assets/Register-Login-BG.jpg');
+    background-size: cover;
+    background-position: center;
+}

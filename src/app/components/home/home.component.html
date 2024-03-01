@@ -1,0 +1,158 @@
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+
+    
+<div id="container" class="bg-img" *ngIf="!showRegistrationData"> 
+  <!-- <lib-toastify-toast-container [autoClose]="0" [iconLibrary]="'font-awesome'"></lib-toastify-toast-container> -->
+    <!-- Cover Box -->
+    <div id="signup">
+    <!-- Sign Up Section -->
+    <h1 class="sign-up">Join BMS Banking</h1>
+    <p class="sign-up">Empower your finances seamlessly with our easy signup</p>
+    <a class="button sign-up" href="#signup">Sign Up</a>
+    <!-- Sign In Section -->
+    <h1 class="sign-in">Welcome Back!</h1>
+    <p class="sign-in"> Sign In to BMS Portal for Personalized Banking Excellence</p>
+    <br>
+    <a class="button sub sign-in" href="#">Sign In</a>
+
+    <h1 class="admin">Welcome Back!</h1>
+    <p class="admin"> Sign In to BMS Portal for Personalized Banking Excellence</p>
+    <br>
+    <a class="button sub admin" href="#signup">Admin</a>
+    </div>
+    <!-- Login Box -->
+    <div id="login">
+    <h1>Sign In</h1> 
+    <br>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- <div class="mb-4"> -->
+          <label for="accountNumber"></label>
+          <input formControlName="accountNumber" type="text" id="accountNumber" placeholder="Account Number"
+            class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" />
+          <div *ngIf="loginForm.get('accountNumber')?.invalid && loginForm.get('accountNumber')?.touched"
+            class="text-red-500 text-sm mt-1">
+            Account Number is required.
+          <!-- </div> -->
+        </div>
+        <!-- <div class="mb-6"> -->
+            <label for="password"></label>
+          <div class="relative">
+            <input formControlName="password" type="{{ showPassword ? 'text' : 'password' }}" id="password" placeholder="Password"
+              class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" />
+          </div>
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            class="text-red-500 text-sm mt-1">
+            Password is required.
+          <!-- </div> -->
+        </div>
+        <br>
+        <div>
+            <a id="forgot-pass" routerLink="verify/password">Forgot your password?</a><br>
+            <a id="login-via-otp" routerLink="/login/otp">Login via Otp</a><br>
+            <input class="submit-btn" type="submit" (click)="onSubmit()" value="Login">
+        </div>
+      </form>
+    </div>
+    <!-- Register Box -->
+    <div id="register">
+    <h1>Create Account</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitSignIn()">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <label for="name"></label>
+            <input formControlName="name" type="text" id="name" placeholder="Name"
+              class="w-full px-1 py-1 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" />
+            <div *ngIf="f.name.invalid && f.name.touched" class="text-red-500 text-sm mt-1">
+              Please enter a valid name.
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label for="email"></label>
+            <input formControlName="email" type="email" id="email" placeholder="Email"
+              class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" />
+            <div *ngIf="f.email.invalid && f.email.touched" class="text-red-500 text-sm mt-1">
+              <div *ngIf="f.email.errors?.required">Email is required.</div>
+              <div *ngIf="f.email.errors?.email">Please enter a valid email address.</div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label for="address"></label>
+            <input formControlName="address" type="text" id="address" placeholder="Address"
+              class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" />
+            <div *ngIf="f.address.invalid && f.address.touched" class="text-red-500 text-sm mt-1">
+              Address is required.
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label for="phone_number"></label>
+            <input formControlName="phone_number" type="tel" id="phone_number" placeholder="Phone Number"
+              class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500" />
+
+            <div *ngIf="f.phone_number.invalid && f.phone_number.touched" class="text-red-500 text-sm mt-1">
+              <div *ngIf="f.phone_number.errors?.required">Phone number is required.</div>
+              <div *ngIf="f.phone_number.errors?.pattern">Please enter a valid 10-digit phone number.</div>
+            </div>
+          </div>
+
+          <div class="col-span-1 w-90" >
+            <label for="password"></label>
+            <input formControlName="password" type="password" id="password" placeholder="Password"
+              class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 w-90"/>
+            <div *ngIf="f.password.invalid && f.password.touched" class="text-red-500 text-sm mt-1">
+            </div>
+          </div>
+          <div class="col-span-1 w-90">
+            <label for="confirmPassword"></label>
+            <input formControlName="confirmPassword" type="password" id="confirmPassword" placeholder="Confirm Password"
+              class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 w-90" />
+            <div *ngIf="f.confirmPassword.invalid && f.confirmPassword.touched" class="text-red-500 text-sm mt-1">
+              <div *ngIf="f.confirmPassword.errors?.passwordMismatch">Passwords do not match.</div>
+            </div>
+          </div>
+
+        </div>
+        <div>
+            <input class="submit-btn" type="submit" value="Sign Up">
+        </div>
+      </form>
+
+    </div>
+    </div> <!-- END Container -->
+
+    <!-- <div class="rounded-lg border border-gray-300 p-8" *ngIf="showRegistrationData">
+        <h2 class="text-3xl font-semibold mb-6">Registration Successful!</h2>
+        <p>Name: {{ registrationData.name }}</p>
+        <p>Email: {{ registrationData.email }}</p>
+        <p>Account Number: {{ registrationData.accountNumber }}</p>
+        <p>Branch: {{ registrationData.branch }}</p>
+        <div class="mt-4 flex items-center justify-center">
+          <a routerLink="/" type="button"
+            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            (click)="showRegistrationData = false">Continue to Login</a>
+        </div>
+      </div> -->
+
+      <div class="vh-100 d-flex justify-content-center align-items-center" *ngIf="showRegistrationData">
+        <div class="col-md-4 bg-w" >
+            <div class="border border-3 border-success"></div>
+            <div class="card  bg-white shadow p-5">
+                <div class="mb-4 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75"
+                        fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                    </svg>
+                </div>
+                <div class="text-center">
+                    <h6>Thank You for Registration!</h6>
+                    <p>Name: {{ registrationData.name }}</p>
+                    <p>Email: {{ registrationData.email }}</p>
+                    <p>Account Number: {{ registrationData.accountNumber }}</p>
+                    <p>Branch: {{ registrationData.branch }}</p>
+                    <a routerLink="/" type="button" class="btn btn-outline-success" (click)="showRegistrationData = false">Continue to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
